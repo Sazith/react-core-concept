@@ -2,7 +2,7 @@ import React from "react";
 
 const Country = (props) => {
   const { name, population, region, flag, flags } = props.country;
-  console.log(props.country);
+  const handleAddCountry = props.handleAddCountry;
   return (
     <>
       <div style={{ border: "1px solid yellow", marginBottom: "1rem" }}>
@@ -22,6 +22,10 @@ const Country = (props) => {
         <p style={{ margin: "0", padding: "20px 0px" }}>
           <small>Region: {region} </small>
         </p>
+        <button onClick={() => handleAddCountry(props.country)}>
+          {" "}
+          Add Country
+        </button>
       </div>
     </>
   );

@@ -62,6 +62,12 @@ function App() {
     .then(res => res.json())
     .then(data => setCountry(data))
   },[])
+  const [cart,setCart] = useState([]);
+  const handleAddCountry = (country) =>{
+    const newCart = [...cart,cart];
+    setCart(newCart)
+
+  }
   return (
     <div className="App">
       <header className="App-header">
@@ -107,9 +113,12 @@ function App() {
           <h1>Random User : </h1>
          
         </div>
+
         <div>
+          <h3>Total Countries showing : {country.length}</h3>
+          <h2>Add Country :{cart.length} </h2>
           {
-            country.map((country,i) => <Country country={country} key={i}></Country> )
+            country.map((country,i) => <Country country={country} handleAddCountry={handleAddCountry} key={i}></Country> )
           }
         </div>
         </div>
