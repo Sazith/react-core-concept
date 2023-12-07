@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState } from 'react';
+import Country from './components/Country';
 
 function App() {
   var person = {
@@ -46,6 +47,21 @@ function App() {
       .then(res => res.json())
       .then(data => setUser(data))
   },[])
+
+  const [randomUser,setRandomUser] = useState([]);
+  useEffect(()=>{
+    fetch('https://randomuser.me/api/')
+    .then(res => res.json())
+    .then(data => setRandomUser(data))
+  },[])
+  console.log(randomUser.info)
+
+  const [country,setCountry] = useState([]);
+  useEffect(()=>{
+    fetch('https://restcountries.com/v3.1/all')
+    .then(res => res.json())
+    .then(data => setCountry(data))
+  },[])
   return (
     <div className="App">
       <header className="App-header">
@@ -85,6 +101,15 @@ function App() {
             user.map((user,i)=>(
               <Users user={user} key={i}/>
             ))
+          }
+        </div>
+        <div>
+          <h1>Random User : </h1>
+         
+        </div>
+        <div>
+          {
+            country.map((country,i) => <Country country={country} key={i}></Country> )
           }
         </div>
         </div>
